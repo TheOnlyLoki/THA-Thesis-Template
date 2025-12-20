@@ -26,7 +26,9 @@
       ]
     ],
     [
-      #text(fill: tha-red, weight: "bold", size: 12pt)[#metadata.thesis.faculty]
+      #box(height: 52.5pt, width: 100%)[
+        #text(fill: tha-red, weight: "bold", size: 12pt)[#metadata.thesis.faculty]
+      ]
     ],
   )
 
