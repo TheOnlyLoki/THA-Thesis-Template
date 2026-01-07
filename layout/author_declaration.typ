@@ -1,4 +1,4 @@
-#import "./utils/helpers.typ": toml_to_datetime
+#import "./utils/helpers.typ": toml_to_datetime, format_date
 #import "@preview/linguify:0.4.2": linguify
 
 #let author_declaration(
@@ -25,7 +25,7 @@
   v(20mm)
 
   text[
-    #authorSignaturePlace#if linguify("authorDeclarationDate") != "" [, #linguify("authorDeclarationDate")] #submissionDateTypst.display("[day]. [month repr:long] [year]")
+    #authorSignaturePlace#if linguify("authorDeclarationDate") != "" [, #linguify("authorDeclarationDate")] #format_date(submissionDateTypst, language)
   ]
 
   v(20mm)

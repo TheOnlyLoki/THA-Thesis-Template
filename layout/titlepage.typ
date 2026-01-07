@@ -1,4 +1,4 @@
-#import "./utils/helpers.typ": toml_to_datetime
+#import "./utils/helpers.typ": format_date, toml_to_datetime
 #import "@preview/linguify:0.4.2": linguify
 
 #let titlepage(metadata) = {
@@ -45,8 +45,12 @@
       #text(size: 12pt)[#linguify("reachingDegree")] \
       #v(-8pt)
       #text(size: 12pt)[#metadata.thesis.study_degree #linguify("inLabel") #metadata.thesis.study_program]
-      #v(12mm)
-      #text(fill: tha-red, size: 18pt, weight: "bold")[#metadata.thesis.title]
+      #v(41pt)
+
+      #box(height: 34.5pt, width: 100%)[
+        #text(fill: tha-red, size: 18pt, weight: "bold")[#metadata.thesis.title]
+      ]
+
       #v(9.5mm)
       #text(size: 11pt)[#linguify("createdBy")]
       #text(size: 15pt)[#metadata.author.name]
@@ -69,13 +73,13 @@
             ()
           },
           [#linguify("topicAssignment")],
-          [#toml_to_datetime(metadata.dates.topic_assignment).display("[day]. [month repr:long] [year]")],
+          [#format_date(toml_to_datetime(metadata.dates.topic_assignment), metadata.settings.language)],
           [#linguify("submittedOn")],
-          [#toml_to_datetime(metadata.dates.submission).display("[day]. [month repr:long] [year]")],
+          [#format_date(toml_to_datetime(metadata.dates.submission), metadata.settings.language)],
           ..if metadata.dates.at("defense", default: none) != none {
             (
               [#linguify("defenseOn")],
-              [#toml_to_datetime(metadata.dates.defense).display("[day]. [month repr:long] [year]")],
+              [#format_date(toml_to_datetime(metadata.dates.defense), metadata.settings.language)],
             )
           } else {
             ()
@@ -88,38 +92,33 @@
     ],
     [
       #set par(leading: 1.6mm)
-      #let extra_spacing = 0mm
       #v(68.5mm)
-      #text(size: 7pt, weight: "bold")[#metadata.author.name]
-      #v(-0.15mm)
-      #if metadata.author.street != "" [
-        #text(size: 7pt)[#metadata.author.street]
+
+      #box(height: 90pt, width: 100%)[
+        #text(size: 7pt, weight: "bold")[#metadata.author.name]
+        #v(-0.15mm)
+        #if metadata.author.street != "" [
+          #text(size: 7pt)[#metadata.author.street]
+          #linebreak()
+        ]
+        #if metadata.author.zip != "" or metadata.author.city != "" [
+          #text(size: 7pt)[#metadata.author.zip #metadata.author.city]
+          #linebreak()
+        ]
+        #if metadata.author.phone != "" [
+          #text(size: 7pt)[T #metadata.author.phone]
+          #linebreak()
+        ]
+        #if metadata.author.email != "" [
+          #text(size: 7pt)[#metadata.author.email]
+          #v(3mm)
+        ]
+        #text(size: 7pt)[#linguify("enrolmentNumber"):]
         #linebreak()
-      ] else {
-        extra_spacing = extra_spacing + 9.5pt
-      }
-      #if metadata.author.zip != "" or metadata.author.city != "" [
-        #text(size: 7pt)[#metadata.author.zip #metadata.author.city]
-        #linebreak()
-      ] else {
-        extra_spacing = extra_spacing + 9.5pt
-      }
-      #if metadata.author.phone != "" [
-        #text(size: 7pt)[T #metadata.author.phone]
-        #linebreak()
-      ] else {
-        extra_spacing = extra_spacing + 9.5pt
-      }
-      #if metadata.author.email != "" [
-        #text(size: 7pt)[#metadata.author.email]
-        #v(3mm)
-      ] else {
-        extra_spacing = extra_spacing + 28pt
-      }
-      #text(size: 7pt)[#linguify("enrolmentNumber"):]
-      #linebreak()
-      #text(size: 7pt)[#metadata.author.enrolment_no]
-      #v(4.7mm + extra_spacing)
+        #text(size: 7pt)[#metadata.author.enrolment_no]
+      ]
+
+      #v(4.7mm)
       #text(fill: tha-red, size: 7pt, weight: "bold")[#metadata.university.name]
       #v(-0.15mm)
       #text(size: 7pt)[#metadata.university.address]
