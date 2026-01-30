@@ -40,6 +40,7 @@
   )
 
   show math.equation: set text(weight: 400)
+  show math.equation: math.upright
 
   // --- Equations ---
   set math.equation(numbering: (..num) => numbering("(1.1)", counter(heading).get().first(), num.pos().first()))
