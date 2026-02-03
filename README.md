@@ -7,7 +7,7 @@ An attempt to port the official THA LaTeX template to Typst, a more modern alter
 1. Install [Typst](https://github.com/typst/typst)
 2. Edit `metadata.toml` with your thesis information
 3. Write your content in `content/`
-4. Compile: `typst compile thesis.typ`
+4. Compile: `typst compile --font-path=./fonts thesis.typ`
 
 ## Configuration
 

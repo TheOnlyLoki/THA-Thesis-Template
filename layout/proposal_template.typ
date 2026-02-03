@@ -39,7 +39,7 @@
     ],
   )
 
-  show math.equation: set text(weight: 400)
+  show math.equation: set text(weight: 400, font: "TeX Gyre Termes Math")
   show math.equation: math.upright
 
   // --- Equations ---

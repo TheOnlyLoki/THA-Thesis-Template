@@ -22,7 +22,8 @@ $RECYCLE.BIN/
 
 # Editor files
 # VSCode
-.vscode/
+.vscode/*
+!.vscode/settings.json
 *.code-workspace
 
 # JetBrains IDEs
