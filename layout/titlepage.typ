@@ -48,6 +48,7 @@
       #v(41pt)
 
       #box(height: 34.5pt, width: 100%)[
+        #set par(leading: 5pt)
         #text(fill: tha-red, size: 18pt, weight: "bold")[#metadata.thesis.title]
       ]
 
