@@ -3,6 +3,7 @@ tableOfContents = "Table of Contents"
 listOfFigures = "List of Figures"
 listOfTables = "List of Tables"
 bibliography = "Bibliography"
+abstract = "Abstract"
 
 # Titlepage translations
 thesis = "Thesis"

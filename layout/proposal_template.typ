@@ -154,3 +154,19 @@
     target: figure.where(kind: table),
   )
 }
+
+#let abstract-page(body) = {
+  set page(footer: [])
+
+  align(left + horizon)[
+    #block(width: 100%)[
+      #align(center)[
+        #text(size: 13pt)[
+          #linguify("abstract")
+        ]
+        #v(7pt)
+      ]
+      #body
+    ]
+  ]
+}
