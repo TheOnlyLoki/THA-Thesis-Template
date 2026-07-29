@@ -32,9 +32,25 @@
 
   // Set the document's basic properties.
   set page(
-    margin: (inside: 37.5mm, outside: 25mm, top: 25mm, bottom: 40mm),
-    binding: left,
-    footer: context align(if calc.odd(counter(page).get().first()) { right } else { left })[
+    margin: if metadata.settings.two_side_mode {
+      (inside: 37.5mm, outside: 25mm, top: 25mm, bottom: 40mm)
+    } else {
+      (inside: 25mm, outside: 25mm, top: 25mm, bottom: 40mm)
+    },
+
+    binding: if metadata.settings.two_side_mode {
+      left
+    } else {
+      auto
+    },
+
+    footer: context align(
+      if metadata.settings.two_side_mode {
+        if calc.odd(counter(page).get().first()) { right } else { left }
+      } else {
+        center
+      }
+    )[
       #counter(page).display()
     ],
   )

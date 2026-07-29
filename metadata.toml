@@ -57,3 +57,6 @@ language = "de"
 
 # Set to true if thesis is under non-disclosure agreement
 non_disclosure = false
+
+# Set to true if thesis will be printed and bound
+two_side_mode = false
