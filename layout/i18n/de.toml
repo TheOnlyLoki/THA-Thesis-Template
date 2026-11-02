@@ -3,6 +3,7 @@ tableOfContents = "Inhaltsverzeichnis"
 listOfFigures = "Abbildungsverzeichnis"
 listOfTables = "Tabellenverzeichnis"
 bibliography = "Literaturverzeichnis"
+abstract = "Zusammenfassung"
 
 # Titlepage translations
 thesis = "Abschlussarbeit"
