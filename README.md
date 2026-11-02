@@ -27,6 +27,28 @@ faculty = "Fakultät für\nInformatik"
 language = "de"  # "de" or "en"
 ```
 
+## Page numbering and appendix
+
+- Front matter (abstract, table of contents) uses roman page numbers.
+- `#show: main-matter` after `#table-of-contents()` switches to arabic numbers starting at 1.
+- `#show: appendix` before the first appendix chapter numbers chapters A, B, ... (equations (A.1), figures A.1).
+
+See `thesis.typ` for both.
+
+## Bibliography tips
+
+Typst's IEEE style ignores the `organization` field of `@standard` entries. Use `publisher` (and `address`) instead:
+
+```bibtex
+@standard{iso15066,
+  title     = {Robots and robotic devices -- Collaborative robots},
+  publisher = {{International Organization for Standardization}},
+  address   = {Geneva, Switzerland},
+  number    = {ISO/TS 15066:2016},
+  date      = {2016-02}
+}
+```
+
 ## License
 
 CC0 1.0 Universal - Public Domain

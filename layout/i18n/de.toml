@@ -2,6 +2,7 @@
 tableOfContents = "Inhaltsverzeichnis"
 listOfFigures = "Abbildungsverzeichnis"
 listOfTables = "Tabellenverzeichnis"
+appendix = "Anhang"
 bibliography = "Literaturverzeichnis"
 abstract = "Zusammenfassung"
 

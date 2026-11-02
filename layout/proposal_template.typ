@@ -30,8 +30,13 @@
 
   titlepage(metadata)
 
+  // Front matter is numbered in roman numerals, starting at i after the title page.
+  // `#show: main-matter` switches to arabic numerals (see thesis.typ).
+  counter(page).update(1)
+
   // Set the document's basic properties.
   set page(
+    numbering: "i",
     margin: if metadata.settings.two_side_mode {
       (inside: 37.5mm, outside: 25mm, top: 25mm, bottom: 40mm)
     } else {
@@ -51,7 +56,7 @@
         center
       }
     )[
-      #counter(page).display()
+      #if page.numbering != none { counter(page).display() }
     ],
   )
 
@@ -122,6 +127,8 @@
   body
 
   pagebreak()
+  // Bibliography continues the arabic page numbers of the main matter
+  set page(numbering: "1")
   bibliography(title: linguify("bibliography"), bib_path, style: "ieee")
 }
 
@@ -145,10 +152,24 @@
   )
 
   pagebreak(to: "odd")
+}
 
+// Main matter: arabic page numbers starting at 1.
+// Usage in thesis.typ, after the front matter: #show: main-matter
+#let main-matter(body) = {
   set page(numbering: "1")
   counter(page).update(1)
-  set heading(numbering: "1.1")
+  body
+}
+
+// Appendix: chapters numbered A, B, ...; equations (A.1), figures/tables A.1.
+// Usage in thesis.typ, before the first appendix chapter: #show: appendix
+#let appendix(body) = {
+  set heading(numbering: "A.1", supplement: linguify("appendix"))
+  counter(heading).update(0)
+  set math.equation(numbering: (..num) => numbering("(A.1)", counter(heading).get().first(), num.pos().first()))
+  set figure(numbering: (..num) => numbering("A.1", counter(heading).get().first(), num.pos().first()))
+  body
 }
 
 #let list-of-figures() = {
@@ -163,6 +184,7 @@
 }
 
 #let list-of-tables() = {
+  set heading(numbering: none)
   heading(linguify("listOfTables"))
   v(46pt, weak: true)
   outline(
